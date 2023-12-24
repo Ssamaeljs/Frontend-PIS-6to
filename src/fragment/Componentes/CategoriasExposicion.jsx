@@ -10,7 +10,7 @@ const CategoriasExposicion = () => {
     "Extremadamente Alta",
   ];
   const valores = ["< 2", "3-5 ", "6-7", "8-10", "11 >"];
-  const colores = ["008f39", "fae927", "ba3b35", "b3140c", "4c3689"];
+  const colores = ["4eb400", "f7e400", "f85900", "d8001d", "998cff"];
 
   return (
     <div className="card text-center" style={{ maxWidth: "30rem" }}>
