@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Navbar, Image, Modal } from "react-bootstrap";
-import IniciarSesion from "../ModalsBox/IniciarSesion";
+import IniciarSesion from "../../ModalsBox/IniciarSesion";
 const Header = () => {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <div>
       <Navbar className="bg-body-tertiary">
         <Container className="justify-content-end">
-          <Navbar.Brand onClick={handleShow}>
+          <Navbar.Brand onClick={() => setShow(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -29,12 +27,12 @@ const Header = () => {
       <div className="model_box">
         <Modal
           show={show}
-          onHide={handleClose}
+          onHide={() => setShow(false)}
           style={{ "--bs-modal-width": "50%" }}
           keyboard={false}
         >
           <Modal.Header closeButton />
-          <IniciarSesion />
+          <IniciarSesion setShow={setShow} />
         </Modal>
       </div>
     </div>

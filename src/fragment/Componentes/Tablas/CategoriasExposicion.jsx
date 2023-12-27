@@ -1,17 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Table } from "react-bootstrap";
 import React from "react";
+import colorValues from "../../../utilidades/data/colorValues.json";
 const CategoriasExposicion = () => {
-  const categorias = [
-    "Baja",
-    "Moderada",
-    "Alta",
-    "Muy Alta",
-    "Extremadamente Alta",
-  ];
-  const valores = ["< 2", "3-5 ", "6-7", "8-10", "11 >"];
-  const colores = ["4eb400", "f7e400", "f85900", "d8001d", "998cff"];
-
   return (
     <div className="card text-center" style={{ maxWidth: "30rem" }}>
       <div className="card-header">
@@ -24,16 +15,16 @@ const CategoriasExposicion = () => {
           <thead>
             <tr>
               <th>Categoría</th>
-              <th>Valores</th>
+              <th>Rango</th>
               <th>Colores</th>
             </tr>
           </thead>
           <tbody>
-            {categorias.map((categoria, index) => (
+            {colorValues.map((categoria, index) => (
               <tr key={index}>
-                <td>{categoria}</td>
-                <td>{valores[index]}</td>
-                <td style={{ backgroundColor: `#${colores[index]}` }}></td>
+                <td>{categoria.tipo}</td>
+                <td>{categoria.valor_max}</td>
+                <td style={{ backgroundColor: categoria.color }}></td>
               </tr>
             ))}
           </tbody>

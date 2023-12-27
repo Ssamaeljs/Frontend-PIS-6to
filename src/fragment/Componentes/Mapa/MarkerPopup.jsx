@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Popup } from "react-leaflet";
 
 const MarkerPopup = (props) => {
   const { name, geometry, uv } = props.data;
+  const { setSelectedUVData } = props;
+  const handleVerDatosClick = () => {
+    setSelectedUVData((prev) => props.data);
+  };
   return (
     <Popup>
       <div>
@@ -18,6 +22,11 @@ const MarkerPopup = (props) => {
         <p>
           <strong>UV:</strong> {uv}
         </p>
+        <div className="text-center">
+          <a href="#/" onClick={handleVerDatosClick}>
+            Ver datos...
+          </a>
+        </div>
       </div>
     </Popup>
   );

@@ -30,19 +30,16 @@ export const POST = async (data, urls, token = null, type = "json") => {
   if (token) {
     headers["x-api-token"] = token;
   }
-  try {
-    const datos = await (
-      await fetch(`${URLN}/${urls}`, {
-        method: "POST",
-        body: data,
-        headers: headers,
-      })
-    ).json();
 
-    return datos;
-  } catch (error) {
-    console.log(error);
-  }
+  const datos = await (
+    await fetch(`${URLN}/${urls}`, {
+      method: "POST",
+      body: data,
+      headers: headers,
+    })
+  ).json();
+
+  return datos;
 };
 
 export const Listar = async (urls) => {

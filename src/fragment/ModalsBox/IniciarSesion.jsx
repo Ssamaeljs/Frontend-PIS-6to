@@ -15,7 +15,9 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-const IniciarSesion = () => {
+const IniciarSesion = (props) => {
+  const { setShow } = props;
+
   const {
     register,
     handleSubmit,
@@ -34,7 +36,7 @@ const IniciarSesion = () => {
         mensajes("Correo y/o Contraseña Incorrectos", "error", "Error");
       } else {
         saveToken(info.info.token);
-        navegation("/b");
+        setShow((prev) => !prev);
       }
     });
   };
@@ -105,11 +107,8 @@ const IniciarSesion = () => {
                     </Button>
                   </div>
                   <div className="text-center mt-5 mb-2">
-                    <a className="small text-muted" href="#!">
-                      Olvidaste tu contraseña?
-                    </a>
                     <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-                      Aún no tienes una cuenta?{" "}
+                      Quieres ser un Usuario?{" "}
                       <a href="#!" style={{ color: "#393f81" }}>
                         Registrate aquí
                       </a>
