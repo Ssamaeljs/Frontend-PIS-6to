@@ -42,44 +42,7 @@ export const POST = async (data, urls, token = null, type = "json") => {
   return datos;
 };
 
-export const Listar = async (urls) => {
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  const datos = await (
-    await fetch(`${URLN}/${urls}`, {
-      method: "GET",
-      headers: headers,
-    })
-  ).json();
-  return datos;
-};
-
-export const Guardar = async (data, urls) => {
-  const datos = await (
-    await fetch(`${URLN}/${urls}`, {
-      method: "POST",
-      body: data,
-    })
-  ).json();
-  return datos;
-};
-
-export const GuardarJSON = async (data, urls) => {
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  const datos = await (
-    await fetch(`${URLN}/${urls}`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: headers,
-    })
-  ).json();
-  return datos;
-};
-
-export const Eliminar = async (urls) => {
+export const DELETE = async (urls) => {
   const datos = await (
     await fetch(URLN + "/" + urls, {
       method: "DELETE",

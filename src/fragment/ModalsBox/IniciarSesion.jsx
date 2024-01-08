@@ -32,11 +32,13 @@ const IniciarSesion = (props) => {
     };
 
     POST(datos, "iniciar_sesion").then((info) => {
+      console.log(info);
       if (info.code !== 200) {
         mensajes("Correo y/o Contraseña Incorrectos", "error", "Error");
       } else {
         saveToken(info.info.token);
         setShow((prev) => !prev);
+        navegation("/admin", info.info);
       }
     });
   };

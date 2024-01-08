@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Navbar, Image, Modal } from "react-bootstrap";
+import { Container, Navbar, Modal } from "react-bootstrap";
 import IniciarSesion from "../../ModalsBox/IniciarSesion";
 const Header = () => {
   const [show, setShow] = useState(false);

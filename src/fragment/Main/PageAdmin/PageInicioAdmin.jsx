@@ -1,13 +1,12 @@
-import CategoriasExposicion from "../Componentes/Tablas/CategoriasExposicion";
-import MapView from "../Componentes/Mapa/MapaView";
-import Recomendaciones from "../Componentes/Tablas/Recomendaciones";
-import Header from "../Componentes/tools/Header";
-import { GET } from "../../hooks/Conexion";
-import { getToken } from "../../utilidades/Sessionutil";
-import { useEffect, useState } from "react";
-import MedicionView from "../Componentes/MedicionUV/MedicionView";
-import Footer from "../Componentes/tools/Footer";
-const PaginaInicio = () => {
+import React, { useEffect, useState } from "react";
+import MapView from "../../Componentes/Mapa/MapaView";
+import MedicionView from "../../Componentes/MedicionUV/MedicionView";
+import CategoriasExposicion from "../../Componentes/Tablas/CategoriasExposicion";
+import Recomendaciones from "../../Componentes/Tablas/Recomendaciones";
+import { GET } from "../../../hooks/Conexion";
+import { getToken } from "../../../utilidades/Sessionutil";
+
+const PageInicioAdmin = () => {
   const [llDispositivos, setLlDispositivos] = useState(false);
   const [dispositivos, setDispositivos] = useState([]);
   const [selectedUVData, setSelectedUVData] = useState(null);
@@ -23,10 +22,8 @@ const PaginaInicio = () => {
       });
     }
   }, [llDispositivos]);
-
   return (
     <div>
-      <Header />
       <div
         className="container-fluid"
         style={{
@@ -54,10 +51,9 @@ const PaginaInicio = () => {
             </div>
           </>
         )}
-        <Footer />
       </div>
     </div>
   );
 };
 
-export default PaginaInicio;
+export default PageInicioAdmin;
