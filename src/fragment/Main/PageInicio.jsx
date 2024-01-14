@@ -1,61 +1,112 @@
-import CategoriasExposicion from "../Componentes/Tablas/CategoriasExposicion";
-import MapView from "../Componentes/Mapa/MapaView";
-import Recomendaciones from "../Componentes/Tablas/Recomendaciones";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../Componentes/tools/Header";
 import { GET } from "../../hooks/Conexion";
-import { getToken } from "../../utilidades/Sessionutil";
+import { borrarSesion, getToken } from "../../utilidades/Sessionutil";
 import { useEffect, useState } from "react";
-import MedicionView from "../Componentes/MedicionUV/MedicionView";
-import Footer from "../Componentes/tools/Footer";
+
+import { useLocation } from "react-router";
+import ContenedorInicio from "../Contenedores/ContenedorInicio";
+import { Spinner } from "react-bootstrap";
 const PaginaInicio = () => {
+  const props = useLocation();
+  if (!props.state) {
+    borrarSesion();
+  }
   const [llDispositivos, setLlDispositivos] = useState(false);
   const [dispositivos, setDispositivos] = useState([]);
-  const [selectedUVData, setSelectedUVData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!llDispositivos) {
-      GET("listar/dispositivo", getToken()).then((info) => {
-        if (info.code !== 200) {
-        } else {
-          setDispositivos(info.info);
-          setLlDispositivos((prev) => !prev);
-        }
-      });
+      GET("listar/dispositivo", getToken())
+        .then((info) => {
+          if (info.code !== 200) {
+            console.error("Error en la respuesta:", info);
+          } else {
+            setDispositivos(info.info);
+          }
+        })
+        .catch((error) => {
+          setError("Error de Conexión");
+        })
+        .finally(() => {
+          setLlDispositivos(true);
+          setLoading(false);
+        });
     }
-  }, [llDispositivos]);
+  }, [llDispositivos, setLoading]);
 
   return (
     <div>
-      <Header />
-      <div
-        className="container-fluid"
+      <section
+        className="home"
         style={{
-          backgroundColor: "#f2f2f2",
-          padding: "5%",
+          backgroundPosition: "center",
+          boxShadow: "inset 0 100px 50px 4px rgb(0 0 0 / 40%)",
         }}
       >
-        {llDispositivos && (
-          <>
-            <div className="row justify-content-center">
-              <div className="col-auto">
-                <MapView
-                  dispositivos={dispositivos}
-                  setSelectedUVData={setSelectedUVData}
-                />
-              </div>
-              <div className="col-auto">
-                <MedicionView
-                  dispositivos={dispositivos}
-                  selectedUVData={selectedUVData}
-                />
-                <CategoriasExposicion />
-                <Recomendaciones />
-              </div>
+        {dispositivos.length > 0 && <Header dispositivos={dispositivos} />}
+
+        <div
+          className="container text-center"
+          style={{
+            transform: "translateY(150px)",
+            alignItems: "center",
+            backgroundColor: "rgba(19, 35, 64, 0.6)",
+            borderRadius: "20px",
+          }}
+        >
+          {loading ? (
+            <div
+              className="row justify-content-center"
+              style={{ padding: "100px", scale: "1" }}
+            >
+              <Spinner
+                style={{ width: "100px", height: "100px" }}
+                animation="border"
+                variant="success"
+              />
+              <h1
+                style={{
+                  color: "white",
+                  fontSize: "25px",
+                  fontFamily: "Arial",
+                  fontWeight: "600",
+                  borderBottom: "1px solid #e20613",
+                }}
+              >
+                Cargando datos...
+              </h1>
             </div>
-          </>
-        )}
-        <Footer />
-      </div>
+          ) : error ? (
+            <>
+              <img
+                src={
+                  "https://upload.wikimedia.org/wikipedia/commons/d/df/UNL3.png"
+                }
+                alt="404"
+                style={{ width: "20%" }}
+              />
+              <h1
+                style={{
+                  color: "red",
+                  fontSize: "25px",
+                  fontFamily: "Arial",
+                  fontWeight: "600",
+                }}
+              >
+                {error}
+              </h1>
+            </>
+          ) : (
+            llDispositivos &&
+            dispositivos.length > 0 && (
+              <ContenedorInicio dispositivos={dispositivos} />
+            )
+          )}
+        </div>
+      </section>
     </div>
   );
 };

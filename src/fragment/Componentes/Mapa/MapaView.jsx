@@ -48,19 +48,23 @@ const MapView = (props) => {
   return (
     <div
       className="card text-center"
-      style={{ maxWidth: "70rem", maxHeight: "70rem" }}
+      style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        backgroundColor: "rgba(19, 35, 64, 0.7)",
+      }}
     >
       <>
         <div className="card-header">
-          <h5 className="card-title" style={{ fontWeight: "bold" }}>
-            Ubicación Geográfica
-          </h5>
-        </div>
-        <div className="card-body" style={{ width: "60rem", height: "40rem" }}>
-          <div
-            className="row"
-            style={{ maxWidth: "69rem", maxHeight: "69rem" }}
+          <h3
+            className="card-title"
+            style={{ fontWeight: "bold", color: "white" }}
           >
+            Ubicación Geográfica
+          </h3>
+        </div>
+        <div className="card-body" style={{ width: "102%", height: "10%" }}>
+          <div className="row" style={{ maxWidth: "100%", maxHeight: "100%" }}>
             <MapContainer
               key={forceUpdate ? "force-update" : "normal-update"}
               center={state.currentLocation}

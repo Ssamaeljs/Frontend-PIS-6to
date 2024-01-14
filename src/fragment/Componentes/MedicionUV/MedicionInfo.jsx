@@ -8,25 +8,15 @@ import {
 const MedicionInfo = (props) => {
   const { dispositivos, selectedUVData } = props;
   return (
-    <div
-      className="col-md-6 text-right"
-      style={{
-        width: "200px",
-        height: "200px",
-      }}
-    >
+    <div className="container text-right">
       <div className="row">
-        <div
-          style={{
-            height: "50px",
-          }}
-        >
+        <div className="container" style={{ padding: "20px " }}>
           <a
             style={{
               color: getUVColor(
                 selectedUVData ? selectedUVData.uv : getPromedio(dispositivos)
               ).color,
-              fontSize: "12px",
+              fontSize: "20px",
               fontFamily: "Arial",
               fontWeight: "bold",
             }}
@@ -38,20 +28,25 @@ const MedicionInfo = (props) => {
             }
           </a>
         </div>
-        <a
-          style={{
-            color: "black",
-            fontSize: "12px",
-            fontFamily: "Arial",
-            fontWeight: "bold",
-          }}
-        >
-          {
-            getUVColor(
-              selectedUVData ? selectedUVData.uv : getPromedio(dispositivos)
-            ).descripcion
-          }
-        </a>
+
+        <div />
+        <div className="row">
+          <a
+            style={{
+              color: "white",
+              fontSize: "15px",
+              fontFamily: "Arial",
+              fontWeight: "bold",
+            }}
+          >
+            {
+              getUVColor(
+                selectedUVData ? selectedUVData.uv : getPromedio(dispositivos)
+              ).descripcion
+            }
+          </a>
+          <div />
+        </div>
       </div>
     </div>
   );

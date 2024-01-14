@@ -1,19 +1,29 @@
 import React from "react";
 import MedicionUV from "./MedicionUV";
 import MedicionInfo from "./MedicionInfo";
-import { Card } from "react-bootstrap";
+import CategoriasExposicion from "../Tablas/CategoriasExposicion";
 
 const MedicionView = (props) => {
   const { dispositivos, selectedUVData } = props;
   return (
-    <Card style={{ maxWidth: "50rem", maxHeight: "20rem" }}>
+    <div
+      className="card"
+      style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        backgroundColor: "rgba(19, 35, 64, 0.7)",
+      }}
+    >
       <div className="card-header">
-        <h5 className="card-title text-center" style={{ fontWeight: "bold" }}>
+        <h3
+          className="card-title text-center"
+          style={{ fontWeight: "bold", color: "white" }}
+        >
           Medición
-        </h5>
+        </h3>
       </div>
       <div className="card-body">
-        <div className="row" style={{ height: "14rem" }}>
+        <div className="row justify-content-between">
           <div className="col-md-5">
             <MedicionUV
               dispositivos={dispositivos}
@@ -27,8 +37,13 @@ const MedicionView = (props) => {
             />
           </div>
         </div>
+        <div className="row justify-content-center" style={{ padding: "38px" }}>
+          <div className="col">
+            <CategoriasExposicion />
+          </div>
+        </div>
       </div>
-    </Card>
+    </div>
   );
 };
 

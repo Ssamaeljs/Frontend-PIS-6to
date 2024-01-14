@@ -1,59 +1,55 @@
-import React, { useEffect, useState } from "react";
-import MapView from "../../Componentes/Mapa/MapaView";
-import MedicionView from "../../Componentes/MedicionUV/MedicionView";
-import CategoriasExposicion from "../../Componentes/Tablas/CategoriasExposicion";
-import Recomendaciones from "../../Componentes/Tablas/Recomendaciones";
-import { GET } from "../../../hooks/Conexion";
-import { getToken } from "../../../utilidades/Sessionutil";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "../../Componentes/tools/Header";
+import { useLocation } from "react-router";
+import ContenedorInicio from "../../Contenedores/ContenedorInicio";
+import FuncionesAdmin from "./FuncionesAdmin";
+import Usuarios from "./Gestionar Usuario/Usuarios";
+const PaginaInicioAdmin = () => {
+  const location_props = useLocation();
+  const dispositivos = location_props.state.dispositivos;
+  const user = location_props.state.user;
 
-const PageInicioAdmin = () => {
-  const [llDispositivos, setLlDispositivos] = useState(false);
-  const [dispositivos, setDispositivos] = useState([]);
-  const [selectedUVData, setSelectedUVData] = useState(null);
-
-  useEffect(() => {
-    if (!llDispositivos) {
-      GET("listar/dispositivo", getToken()).then((info) => {
-        if (info.code !== 200) {
-        } else {
-          setDispositivos(info.info);
-          setLlDispositivos((prev) => !prev);
-        }
-      });
+  function obtener_componente() {
+    switch (location_props.pathname) {
+      case "/admin":
+        return <ContenedorInicio dispositivos={dispositivos} />;
+        break;
+      case "/admin/gestion":
+        return <FuncionesAdmin dispositivos={dispositivos} user={user} />;
+        break;
+      case "/admin/gestion/usuarios":
+        return <Usuarios dispositivos={dispositivos} user={user} />;
+        break;
+      default:
+        break;
     }
-  }, [llDispositivos]);
+  }
   return (
-    <div>
-      <div
-        className="container-fluid"
+    <>
+      <section
+        className="home"
         style={{
-          backgroundColor: "#f2f2f2",
-          padding: "5%",
+          backgroundPosition: "center",
+          boxShadow: "inset 0 100px 50px 4px rgb(0 0 0 / 40%)",
         }}
       >
-        {llDispositivos && (
-          <>
-            <div className="row justify-content-center">
-              <div className="col-auto">
-                <MapView
-                  dispositivos={dispositivos}
-                  setSelectedUVData={setSelectedUVData}
-                />
-              </div>
-              <div className="col-auto">
-                <MedicionView
-                  dispositivos={dispositivos}
-                  selectedUVData={selectedUVData}
-                />
-                <CategoriasExposicion />
-                <Recomendaciones />
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+        <Header isAdmin={true} user={user} dispositivos={dispositivos} />
+        <>
+          <div
+            className="container text-center"
+            style={{
+              transform: "translateY(150px)",
+              alignItems: "center",
+              backgroundColor: "rgba(19, 35, 64, 0.6)",
+              borderRadius: "20px",
+            }}
+          >
+            {obtener_componente()}
+          </div>
+        </>
+      </section>
+    </>
   );
 };
 
-export default PageInicioAdmin;
+export default PaginaInicioAdmin;

@@ -23,7 +23,27 @@ const MarkerPopup = (props) => {
           <strong>UV:</strong> {uv}
         </p>
         <div className="text-center">
-          <a href="#/" onClick={handleVerDatosClick}>
+          <a
+            onClick={handleVerDatosClick}
+            style={{
+              textDecoration: "underline",
+              textDecorationColor: "transparent",
+              borderBottom: "1px solid #000", // Raya debajo del texto
+              cursor: "pointer",
+              color: "#000", // Color del texto
+              transition: "color 0.3s, borderBottom 0.3s", // Transición suave
+              display: "inline-block",
+              marginBottom: "-1px", // Evita un pequeño salto al pasar de sin raya a con raya
+            }}
+            onMouseOver={(e) => {
+              e.target.style.color = "#007bff";
+              e.target.style.textDecorationColor = "#007bff";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.color = "#000";
+              e.target.style.textDecorationColor = "transparent";
+            }}
+          >
             Ver datos...
           </a>
         </div>

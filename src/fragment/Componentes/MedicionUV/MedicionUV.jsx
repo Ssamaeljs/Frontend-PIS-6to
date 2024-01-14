@@ -9,11 +9,11 @@ const MedicionUV = (props) => {
   const { dispositivos, selectedUVData } = props;
   return (
     <div
-      className="card text-center"
+      className="container text-center"
       style={{
-        width: "150px",
-        height: "200px",
-        backgroundColor: "#335475",
+        width: "90%",
+        height: "100%",
+        background: "rgba(19, 35, 64, 0.7)",
         borderRadius: "10px",
       }}
     >
@@ -43,18 +43,21 @@ const MedicionUV = (props) => {
           {selectedUVData ? selectedUVData.uv : getPromedio(dispositivos)}
         </a>
       </div>
-      <label
-        style={{
-          fontFamily: "Arial",
-          fontWeight: "bold",
-          fontSize: "15px",
-          width: "150px",
-        }}
-      >
-        {selectedUVData
-          ? formatearFechaYHora(selectedUVData.fecha)
-          : formatearFechaYHora(Date.now())}
-      </label>
+      <div>
+        <label
+          style={{
+            fontFamily: "Arial",
+            fontWeight: "bold",
+            fontSize: "17px",
+            color: "white",
+            width: "60%",
+          }}
+        >
+          {selectedUVData
+            ? formatearFechaYHora(selectedUVData.fecha)
+            : formatearFechaYHora(Date.now())}
+        </label>
+      </div>
     </div>
   );
 };

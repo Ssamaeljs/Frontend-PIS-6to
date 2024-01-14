@@ -4,31 +4,43 @@ import React from "react";
 import colorValues from "../../../utilidades/data/colorValues.json";
 const CategoriasExposicion = () => {
   return (
-    <div className="card text-center" style={{ maxWidth: "30rem" }}>
+    <div
+      className="card"
+      style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        backgroundColor: "rgba(19, 35, 64, 0.7)",
+      }}
+    >
       <div className="card-header">
-        <h5 className="card-title" style={{ fontWeight: "bold" }}>
-          Categorias de exposición
-        </h5>
+        <h4
+          className="card-title text-center"
+          style={{ fontWeight: "bold", color: "white" }}
+        >
+          Categorías de exposición
+        </h4>
       </div>
       <div className="card-body">
-        <Table className="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Categoría</th>
-              <th>Rango</th>
-              <th>Colores</th>
-            </tr>
-          </thead>
-          <tbody>
-            {colorValues.map((categoria, index) => (
-              <tr key={index}>
-                <td>{categoria.tipo}</td>
-                <td>{categoria.valor_max}</td>
-                <td style={{ backgroundColor: categoria.color }}></td>
+        <div className="container" style={{ borderRadius: "10px" }}>
+          <Table className="table-striped table-hover">
+            <thead>
+              <tr className="text-center">
+                <th>Categoría</th>
+                <th>Rango</th>
+                <th>Colores</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {colorValues.map((categoria, index) => (
+                <tr key={index}>
+                  <td>{categoria.tipo}</td>
+                  <td>{categoria.valor_max}</td>
+                  <td style={{ backgroundColor: categoria.color }}></td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
     </div>
   );
