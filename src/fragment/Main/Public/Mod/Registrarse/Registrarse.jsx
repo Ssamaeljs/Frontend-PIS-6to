@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { POST } from "../../../../hooks/Conexion";
+import { set, useForm } from "react-hook-form";
 import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router";
 import {
   MDBCard,
   MDBCardBody,
@@ -9,12 +9,13 @@ import {
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
-import mensajes from "../../../../utilidades/Mensajes";
-import { getToken } from "../../../../utilidades/Sessionutil";
+import mensajes from "../../../../../utilidades/Mensajes";
+import { POST } from "../../../../../hooks/Conexion";
 
-const RegistrarUsuario = (props) => {
+const Registrarse = (props) => {
   const { setShow } = props;
 
+  const navegation = useNavigate();
   const [paginaActual, setPagina] = useState(1);
 
   const [institucion, setInstitucion] = useState("");
@@ -43,12 +44,16 @@ const RegistrarUsuario = (props) => {
         rol: data.rol,
       };
 
-      POST(datos, "guardar/persona", getToken())
+      POST(datos, "registrarse")
         .then((info) => {
           if (info.code !== 200) {
             mensajes("Hubo un error en el registro", "error", "Error");
           } else {
-            mensajes("Usuario registrado exitosamente", "success", "Éxito");
+            mensajes(
+              "Te has registrado, ahora puedes iniciar sesión",
+              "success",
+              "Éxito"
+            );
             setShow(false);
           }
         })
@@ -92,8 +97,27 @@ const RegistrarUsuario = (props) => {
               />
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="form-sample">
+              <Button
+                variant="danger"
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+                onClick={() => setShow(false)}
+              >
+                <span aria-hidden="true">&times;</span>
+              </Button>
+              <h3
+                className="text-center"
+                style={{ letterSpacing: "1px", paddingBottom: "10px" }}
+              >
+                Registrarse
+              </h3>
               <h5
-                className="col-sm-12 text-center mt-5 mb-5"
+                className="col-sm-12 text-center"
                 style={{ letterSpacing: "1px" }}
               >
                 {paginaActual === 1
@@ -199,7 +223,6 @@ const RegistrarUsuario = (props) => {
                     onChange={(e) => {
                       const correo = e.target.value;
                       const dominio = correo.split("@")[1];
-                      console.log(dominio);
                       switch (dominio) {
                         case "unl.edu.ec":
                           setInstitucion("Universidad Nacional de Loja");
@@ -278,6 +301,17 @@ const RegistrarUsuario = (props) => {
                 </Form.Group>
 
                 <div className="text-center mt-5 mb-2">
+                  {paginaActual === 2 && (
+                    <Button
+                      size="lg"
+                      variant="dark"
+                      style={{ width: "120px" }}
+                      onClick={handleCancelar}
+                      disabled={isSubmitting}
+                    >
+                      Atrás
+                    </Button>
+                  )}{" "}
                   <Button
                     size="lg"
                     variant="dark"
@@ -285,83 +319,7 @@ const RegistrarUsuario = (props) => {
                     style={{ width: "150px" }}
                     disabled={isSubmitting}
                   >
-                    {paginaActual === 1 ? (
-                      <>
-                        Siguiente{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-arrow-right"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                          />
-                        </svg>
-                      </>
-                    ) : (
-                      <>
-                        Registrar{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-person-plus"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                          <path
-                            fill-rule="evenodd"
-                            d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"
-                          />
-                        </svg>
-                      </>
-                    )}
-                  </Button>{" "}
-                  <Button
-                    size="lg"
-                    variant="danger"
-                    onClick={handleCancelar}
-                    style={{ width: "150px" }}
-                    disabled={isSubmitting}
-                  >
-                    {paginaActual === 1 ? (
-                      <>
-                        Cancelar{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-x-circle"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-                        </svg>
-                      </>
-                    ) : (
-                      <>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-arrow-left"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
-                          />
-                        </svg>{" "}
-                        Atrás
-                      </>
-                    )}
+                    {paginaActual === 1 ? "Siguiente" : "Registrar"}
                   </Button>
                 </div>
               </div>
@@ -373,4 +331,4 @@ const RegistrarUsuario = (props) => {
   );
 };
 
-export default RegistrarUsuario;
+export default Registrarse;

@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
-const TokenOption = () => {
+const TokenOption = (props) => {
+  const navegation = useNavigate();
   return (
     <div
       className="col-2 justify-content-center btn btn-outline-dark"
@@ -13,16 +15,17 @@ const TokenOption = () => {
         fontWeight: "bold",
         borderRadius: "20px",
       }}
+      onClick={() => navegation("/admin/gestion/solicitudes")}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="130"
         height="200"
         fill="currentColor"
-        className="bi bi-person-fill"
+        className="bi bi-key-fill"
         viewBox="0 0 16 16"
       >
-        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+        <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
       </svg>
       <label style={{ fontSize: "10px", scale: "1.7" }}>
         Gestionar Solicitudes

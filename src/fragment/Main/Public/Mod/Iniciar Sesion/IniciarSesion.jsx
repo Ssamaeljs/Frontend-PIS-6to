@@ -1,12 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import UNL_LOGO_2 from "./imgs/UNL_LOGO_2.png";
+
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { POST } from "../../hooks/Conexion";
-import mensajes from "../../utilidades/Mensajes";
-import { saveToken } from "../../utilidades/Sessionutil";
+
+import { POST } from "../../../../../hooks/Conexion";
+import mensajes from "../../../../../utilidades/Mensajes";
+import { saveToken } from "../../../../../utilidades/Sessionutil";
+
+import iniciar_sesion from "../../imgs/iniciar_sesion.jpg";
 import {
   MDBCard,
   MDBCardBody,
@@ -16,7 +19,7 @@ import {
 } from "mdb-react-ui-kit";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 const IniciarSesion = (props) => {
-  const { setShow, dispositivos } = props;
+  const { setShow, setShowRegistrarse } = props;
 
   const {
     register,
@@ -37,19 +40,14 @@ const IniciarSesion = (props) => {
       } else {
         data = {
           user: info.info.user,
-          dispositivos: dispositivos,
         };
         setShow((prev) => !prev);
         saveToken(info.info.token);
+        localStorage.setItem("data", JSON.stringify(data));
         if (info.info.user.rol === "ADMINISTRADOR") {
-          navegation("/admin", {
-            state: data,
-            isAdmin: true,
-          });
+          navegation("/admin");
         } else {
-          navegation("/", {
-            state: data,
-          });
+          navegation("/inicio");
         }
       }
     });
@@ -59,12 +57,11 @@ const IniciarSesion = (props) => {
       <MDBRow className="g-0">
         <MDBCol md="6">
           <MDBCardImage
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+            src={iniciar_sesion}
             style={{ width: "100%", height: "100%" }}
             alt="login form"
           />
         </MDBCol>
-
         <MDBCol md="6">
           <MDBCardBody className="col">
             <div className="container" style={{ padding: "30px 10px" }}>
@@ -78,7 +75,9 @@ const IniciarSesion = (props) => {
               >
                 <img
                   className="img-fluid"
-                  src={UNL_LOGO_2}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/d/df/UNL3.png"
+                  }
                   alt="UNL_LOGO"
                   style={{
                     width: "30%",
@@ -89,6 +88,19 @@ const IniciarSesion = (props) => {
               </label>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="form-sample">
+              <Button
+                variant="danger"
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  right: "10px",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+                onClick={() => setShow(false)}
+              >
+                <span aria-hidden="true">&times;</span>
+              </Button>
               <h5
                 className="col-sm-12 text-center mt-5 mb-5"
                 style={{ letterSpacing: "1px" }}
@@ -133,7 +145,29 @@ const IniciarSesion = (props) => {
                 <div className="text-center mt-5 mb-2">
                   <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                     Quieres ser un Usuario?{" "}
-                    <a href="#!" style={{ color: "#393f81" }}>
+                    <a
+                      onClick={() => {
+                        setShow((prev) => !prev);
+                        setShowRegistrarse((prev) => !prev);
+                      }}
+                      style={{
+                        textDecoration: "underline",
+                        textDecorationColor: "transparent",
+                        cursor: "pointer",
+                        color: "#000",
+                        transition: "color 0.3s, borderBottom 0.3s",
+                        display: "inline-block",
+                        marginBottom: "-1px",
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.color = "#007bff";
+                        e.target.style.textDecorationColor = "#007bff";
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.style.color = "#000";
+                        e.target.style.textDecorationColor = "transparent";
+                      }}
+                    >
                       Registrate aquí
                     </a>
                   </p>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GET } from "../../../../hooks/Conexion";
 import { getToken } from "../../../../utilidades/Sessionutil";
 import { Modal, Spinner } from "react-bootstrap";
-import RegistrarUsuario from "../../../ModalsBox/Admin/Gestionar Usuario/RegistrarUsuario";
+import RegistrarUsuario from "./Mod/RegistrarUsuario";
 const Usuarios = (props) => {
   const [llUsuarios, setLlUsuarios] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
@@ -135,6 +135,7 @@ const Usuarios = (props) => {
                 padding: "50px",
                 fontFamily: "Arial",
                 fontWeight: "600",
+                overflow: "auto",
               }}
             >
               <div
@@ -266,6 +267,8 @@ const Usuarios = (props) => {
                             ? "#71b37147"
                             : user.cuenta.estado === "EN ESPERA"
                             ? "#b0b37147"
+                            : user.cuenta.estado === "RECHAZADO"
+                            ? "#b3717147"
                             : "transparent",
                       }}
                     >

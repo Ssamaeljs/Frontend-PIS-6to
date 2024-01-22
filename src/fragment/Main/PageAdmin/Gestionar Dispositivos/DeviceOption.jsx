@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
-const DeviceOption = () => {
+const DeviceOption = (props) => {
+  const navegation = useNavigate();
   return (
     <div
       className="col-2 justify-content-center btn btn-outline-danger "
@@ -13,6 +15,12 @@ const DeviceOption = () => {
         fontWeight: "bold",
         borderRadius: "20px",
       }}
+      onClick={() =>
+        navegation("/admin/gestion/dispositivos", {
+          state: { user: props.user },
+          isAdmin: true,
+        })
+      }
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

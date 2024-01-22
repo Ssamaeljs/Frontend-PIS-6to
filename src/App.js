@@ -1,17 +1,23 @@
 import "./App.css";
 
 import { Route, Routes } from "react-router-dom";
-import PageNotFound from "./fragment/Componentes/tools/PageNotFound";
-import PaginaInicio from "./fragment/Main/PageInicio";
-import { MiddlewareSesion } from "./utilidades/Middleware";
+import PageNotFound from "./fragment/Main/Public/PageNotFound";
+import PaginaInicio from "./fragment/Main/Public/PageInicio";
+import { MiddlewareSesion, MiddlewareNoSesion } from "./utilidades/Middleware";
 import PageInicioAdmin from "./fragment/Main/PageAdmin/PageInicioAdmin";
-import FuncionesAdmin from "./fragment/Main/PageAdmin/FuncionesAdmin";
-import Usuarios from "./fragment/Main/PageAdmin/Gestionar Usuario/Usuarios";
+import PaginaInicioUser from "./fragment/Main/PageUser/PageInicioUser";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PaginaInicio />} />
+      <Route
+        path="/"
+        element={
+          <MiddlewareNoSesion>
+            <PaginaInicio />
+          </MiddlewareNoSesion>
+        }
+      />
       <Route
         path="/admin"
         element={
@@ -33,6 +39,46 @@ function App() {
         element={
           <MiddlewareSesion>
             <PageInicioAdmin />
+          </MiddlewareSesion>
+        }
+      />
+      <Route
+        path="/admin/gestion/dispositivos"
+        element={
+          <MiddlewareSesion>
+            <PageInicioAdmin />
+          </MiddlewareSesion>
+        }
+      />
+      <Route
+        path="/admin/gestion/dispositivos/mediciones"
+        element={
+          <MiddlewareSesion>
+            <PageInicioAdmin />
+          </MiddlewareSesion>
+        }
+      />
+      <Route
+        path="/admin/gestion/solicitudes"
+        element={
+          <MiddlewareSesion>
+            <PageInicioAdmin />
+          </MiddlewareSesion>
+        }
+      />
+      <Route
+        path="/admin/configuracion/editar_perfil"
+        element={
+          <MiddlewareSesion>
+            <PageInicioAdmin />
+          </MiddlewareSesion>
+        }
+      />
+      <Route
+        path="/inicio"
+        element={
+          <MiddlewareSesion>
+            <PaginaInicioUser />
           </MiddlewareSesion>
         }
       />

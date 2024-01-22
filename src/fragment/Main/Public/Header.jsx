@@ -1,16 +1,16 @@
-import "../tools/imgs/styleHeader.css";
-import UNL_LOGO from "../tools/imgs/UNL_LOGO.png";
+import "./imgs/styleHeader.css";
+import UNL_LOGO from "./imgs/UNL_LOGO.png";
 import React, { useState } from "react";
 import { Container, Dropdown, Modal, NavDropdown } from "react-bootstrap";
-import IniciarSesion from "../../ModalsBox/IniciarSesion";
+import IniciarSesion from "./Mod/Iniciar Sesion/IniciarSesion";
 import { borrarSesion, estaSesion } from "../../../utilidades/Sessionutil";
 import { useNavigate } from "react-router";
+import Registrarse from "./Mod/Registrarse/Registrarse";
 const Header = (props) => {
   const navegation = useNavigate();
-  const [user, setUser] = useState(props.user);
-  const [dispositivos, setDispositivos] = useState(props.dispositivos);
   const [show, setShow] = useState(false);
-
+  const [showRegistrarse, setShowRegistrarse] = useState(false);
+  const [user, setUser] = useState(props.user);
   return (
     <>
       <nav className="nav" style={{ zIndex: 2 }}>
@@ -75,9 +75,9 @@ const Header = (props) => {
                       <Container style={{ scale: "0.8" }}>
                         <Dropdown.Item
                           onClick={() =>
-                            navegation("/admin", {
-                              state: { user, dispositivos },
-                            })
+                            props.isAdmin
+                              ? navegation("/admin")
+                              : navegation("/inicio")
                           }
                         >
                           <svg
@@ -95,12 +95,7 @@ const Header = (props) => {
                         </Dropdown.Item>
                         {props.isAdmin && (
                           <Dropdown.Item
-                            onClick={() =>
-                              navegation("/admin/gestion", {
-                                state: { user, dispositivos },
-                                isAdmin: true,
-                              })
-                            }
+                            onClick={() => navegation("/admin/gestion")}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +111,13 @@ const Header = (props) => {
                             Gestionar
                           </Dropdown.Item>
                         )}
-                        <Dropdown.Item href="#/action-2">
+                        <Dropdown.Item
+                          onClick={() =>
+                            props.isAdmin
+                              ? navegation("/admin/configuracion")
+                              : navegation("/inicio/configuracion")
+                          }
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="30"
@@ -139,11 +140,11 @@ const Header = (props) => {
                             viewBox="0 0 16 16"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
                             />
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
                             />
                           </svg>{" "}
@@ -162,11 +163,21 @@ const Header = (props) => {
       <Modal
         show={show}
         onHide={() => setShow(false)}
+        style={{ "--bs-modal-width": "40%", transform: "translateY(10%)" }}
+        keyboard={false}
+      >
+        <IniciarSesion
+          setShow={setShow}
+          setShowRegistrarse={setShowRegistrarse}
+        />
+      </Modal>
+      <Modal
+        show={showRegistrarse}
+        onHide={() => setShowRegistrarse(false)}
         style={{ "--bs-modal-width": "40%" }}
         keyboard={false}
       >
-        <Modal.Header closeButton />
-        <IniciarSesion setShow={setShow} dispositivos={props.dispositivos} />
+        <Registrarse setShow={setShowRegistrarse} />
       </Modal>
     </>
   );

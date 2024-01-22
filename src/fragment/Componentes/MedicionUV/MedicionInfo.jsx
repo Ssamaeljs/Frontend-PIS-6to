@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  formatearFechaYHora,
-  getPromedio,
-  getUVColor,
-} from "./assets/MedicionUtils";
+import { getPromedio, getUVColor } from "./assets/MedicionUtils";
 
 const MedicionInfo = (props) => {
   const { dispositivos, selectedUVData } = props;

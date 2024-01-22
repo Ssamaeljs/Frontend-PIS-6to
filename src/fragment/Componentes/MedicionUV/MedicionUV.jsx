@@ -29,7 +29,7 @@ const MedicionUV = (props) => {
           UV
         </a>
         <a style={{ color: "white", fontSize: "15px" }}>
-          {selectedUVData ? "ID " + selectedUVData.name : "PROMEDIO"}
+          {selectedUVData ? "DISPOSITIVO: " + selectedUVData.name : "PROMEDIO"}
         </a>
         <a
           style={{

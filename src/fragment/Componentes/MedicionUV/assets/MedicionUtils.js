@@ -15,20 +15,17 @@ export const getPromedio = (dispositivos) => {
   uv_last.map((uv) => {
     uv_promedio += uv.uv;
   });
-  return (uv_promedio = uv_promedio / uv_last.length);
+  uv_promedio = (uv_promedio / uv_last.length).toFixed(1);
+  return parseFloat(uv_promedio);
 };
+
 export const getUVColor = (uvValue) => {
+  uvValue = parseInt(uvValue);
   const categoriaEncontrada = colorValues.find((categoria) => {
     const rango = categoria.valor_max.split("-");
-    const valor = parseFloat(categoria.valor);
-
-    if (rango.length === 1) {
-      return uvValue <= valor;
-    } else {
-      const min = parseFloat(rango[0]);
-      const max = parseFloat(rango[1]);
-      return uvValue >= min && uvValue <= max;
-    }
+    const min = parseFloat(rango[0]);
+    const max = parseFloat(rango[1]);
+    return uvValue >= min && uvValue <= max;
   });
 
   return categoriaEncontrada;

@@ -17,7 +17,7 @@ const UserOption = (props) => {
       }}
       onClick={() =>
         navegation("/admin/gestion/usuarios", {
-          state: { user: props.user, dispositivos: props.dispositivos },
+          state: { user: props.user },
           isAdmin: true,
         })
       }

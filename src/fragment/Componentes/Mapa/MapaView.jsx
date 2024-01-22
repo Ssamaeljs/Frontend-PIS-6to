@@ -5,12 +5,12 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import Markers from "./VenueMarkers";
 
 const MapView = (props) => {
-  const { setSelectedUVData } = props;
+  const { setSelectedUVData, dispositivos } = props;
   const [forceUpdate, setForceUpdate] = useState(false);
   const [state, setState] = useState({
     currentLocation: { lat: "-4.030666556110944", lng: "-79.19964490854842" },
     zoom: 15,
-    dispositivos: props.dispositivos,
+    dispositivos: dispositivos,
   });
 
   useEffect(() => {
@@ -35,7 +35,6 @@ const MapView = (props) => {
             ],
           }),
         }));
-        // Cambiar el estado para forzar la actualización del componente
         setForceUpdate((prev) => !prev);
       },
       function (error) {},
