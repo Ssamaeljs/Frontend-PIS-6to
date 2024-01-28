@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { useForm } from "react-hook-form";
 import { Button, Form, Spinner } from "react-bootstrap";
+=======
+import { set, useForm } from "react-hook-form";
+import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router";
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
 import {
   MDBCard,
   MDBCardBody,
@@ -10,6 +16,7 @@ import {
 } from "mdb-react-ui-kit";
 import mensajes from "../../../../../utilidades/Mensajes";
 import { POST } from "../../../../../hooks/Conexion";
+<<<<<<< HEAD
 import { getToken } from "../../../../../utilidades/Sessionutil";
 const Registrarse = (props) => {
   const { setShow } = props;
@@ -17,11 +24,28 @@ const Registrarse = (props) => {
   const [show_Institucion, setShow_Institucion] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+=======
+
+const Registrarse = (props) => {
+  const { setShow } = props;
+
+  const navegation = useNavigate();
+  const [paginaActual, setPagina] = useState(1);
+
+  const [institucion, setInstitucion] = useState("");
+  const [show_Institucion, setShow_Institucion] = useState(true);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+<<<<<<< HEAD
     setValue,
+=======
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
   } = useForm();
 
   const onSubmit = (data) => {
@@ -36,6 +60,7 @@ const Registrarse = (props) => {
         institucion: data.institucion,
         correo: data.correo,
         clave: data.clave,
+<<<<<<< HEAD
         rol: "USUARIO",
         description: data.description,
         description_pdf: data.description_pdf[0],
@@ -58,20 +83,36 @@ const Registrarse = (props) => {
             setLoading(true);
           } else {
             console.log(info);
+=======
+        rol: data.rol,
+      };
+
+      POST(datos, "registrarse")
+        .then((info) => {
+          if (info.code !== 200) {
+            mensajes("Hubo un error en el registro", "error", "Error");
+          } else {
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
             mensajes(
               "Te has registrado, ahora puedes iniciar sesión",
               "success",
               "Éxito"
             );
             setShow(false);
+<<<<<<< HEAD
             setLoading(false);
+=======
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
           }
         })
         .catch(() => {
           mensajes("Hubo un error en el registro", "error", "Error");
+<<<<<<< HEAD
         })
         .finally(() => {
           setLoading(false);
+=======
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
         });
     }
   };
@@ -83,6 +124,7 @@ const Registrarse = (props) => {
       setPagina((prev) => prev - 1);
     }
   };
+<<<<<<< HEAD
   const validarFecha = (value) => {
     const fecha = new Date(value);
     const hoy = new Date();
@@ -91,6 +133,9 @@ const Registrarse = (props) => {
     }
     return true;
   };
+=======
+
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
   return (
     <MDBCard style={{ border: "none" }}>
       <MDBRow className="g-0">
@@ -116,11 +161,15 @@ const Registrarse = (props) => {
                 }}
               />
             </div>
+<<<<<<< HEAD
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="form-sample"
               encType="multipart/form-data"
             >
+=======
+            <form onSubmit={handleSubmit(onSubmit)} className="form-sample">
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
               <Button
                 variant="danger"
                 style={{
@@ -165,6 +214,10 @@ const Registrarse = (props) => {
                           "Ingresa los nombres"}
                       </Form.Control.Feedback>
                     </Form.Group>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                     <Form.Group className="mb-4">
                       <Form.Label>Apellidos</Form.Label>
                       <Form.Control
@@ -178,14 +231,22 @@ const Registrarse = (props) => {
                           "Ingresa los apellidos"}
                       </Form.Control.Feedback>
                     </Form.Group>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                     <Form.Group className="mb-4">
                       <Form.Label>Fecha de Nacimiento</Form.Label>
                       <Form.Control
                         type="date"
+<<<<<<< HEAD
                         {...register("fecha_nacimiento", {
                           required: true,
                           validate: validarFecha,
                         })}
+=======
+                        {...register("fecha_nacimiento", { required: true })}
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                         isInvalid={!!errors.fecha_nacimiento}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -193,6 +254,7 @@ const Registrarse = (props) => {
                           "Ingresa la fecha de nacimiento"}
                       </Form.Control.Feedback>
                     </Form.Group>
+<<<<<<< HEAD
                     <Form.Group className="mb-4">
                       <Form.Label>Descripción de la solicitud</Form.Label>
                       <div className="input-group">
@@ -227,6 +289,11 @@ const Registrarse = (props) => {
                     </Form.Group>
                   </>
                 )}
+=======
+                  </>
+                )}
+
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                 {paginaActual === 2 && (
                   <>
                     <Form.Group className="mb-4">
@@ -238,10 +305,15 @@ const Registrarse = (props) => {
                         {...register("institucion", {
                           required: !show_Institucion,
                         })}
+<<<<<<< HEAD
                         isInvalid={!!errors.institucion}
                         onChange={(e) => {
                           setValue("institucion", e.target.value);
                         }}
+=======
+                        defaultValue={institucion}
+                        isInvalid={!!errors.institucion}
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.institucion?.type === "required" &&
@@ -269,6 +341,7 @@ const Registrarse = (props) => {
                           "Seleccione un cargo"}
                       </Form.Control.Feedback>
                     </Form.Group>
+<<<<<<< HEAD
                     <Form.Group className="mb-4">
                       <Form.Label>Correo Electrónico</Form.Label>
                       <Form.Control
@@ -392,6 +465,118 @@ const Registrarse = (props) => {
                       </Button>
                     </>
                   )}
+=======
+                  </>
+                )}
+
+                <Form.Group className="mb-4">
+                  <Form.Label>Correo Electrónico</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Correo Electrónico"
+                    {...register("correo", { required: true })}
+                    onChange={(e) => {
+                      const correo = e.target.value;
+                      const dominio = correo.split("@")[1];
+                      switch (dominio) {
+                        case "unl.edu.ec":
+                          setInstitucion("Universidad Nacional de Loja");
+                          setShow_Institucion(true);
+                          break;
+                        case "utpl.edu.ec":
+                          setInstitucion(
+                            "Universidad Técnica Particular de Loja"
+                          );
+                          setShow_Institucion(true);
+                          break;
+                        case "uide.edu.ec":
+                          setInstitucion(
+                            "Universidad Internacional del Ecuador"
+                          );
+                          setShow_Institucion(true);
+                          break;
+                        default:
+                          setInstitucion("");
+                          setShow_Institucion(false);
+                      }
+                    }}
+                    isInvalid={!!errors.correo}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.correo?.type === "required" &&
+                      "Ingresa un correo electrónico"}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-4">
+                  <Form.Label>Contraseña</Form.Label>
+                  <div className="input-group">
+                    <Form.Control
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Contraseña"
+                      {...register("clave", {
+                        required: true,
+                      })}
+                      isInvalid={!!errors.clave}
+                    />
+                    <Button
+                      variant="light"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="currentColor"
+                          className="bi bi-eye-slash-fill"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z" />
+                          <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z" />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="currentColor"
+                          className="bi bi-eye-fill"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+                          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+                        </svg>
+                      )}
+                    </Button>
+                  </div>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.clave?.type === "pattern" && errors.clave.message}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <div className="text-center mt-5 mb-2">
+                  {paginaActual === 2 && (
+                    <Button
+                      size="lg"
+                      variant="dark"
+                      style={{ width: "120px" }}
+                      onClick={handleCancelar}
+                      disabled={isSubmitting}
+                    >
+                      Atrás
+                    </Button>
+                  )}{" "}
+                  <Button
+                    size="lg"
+                    variant="dark"
+                    type="submit"
+                    style={{ width: "150px" }}
+                    disabled={isSubmitting}
+                  >
+                    {paginaActual === 1 ? "Siguiente" : "Registrar"}
+                  </Button>
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                 </div>
               </div>
             </form>

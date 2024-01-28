@@ -21,6 +21,7 @@ export const POST = async (data, urls, token = null, type = "json") => {
       headers["Content-Type"] = "application/json";
       data = JSON.stringify(data);
       break;
+
     case "form":
       var form_data = new FormData();
       for (var key in data) {
@@ -31,7 +32,7 @@ export const POST = async (data, urls, token = null, type = "json") => {
     default:
       break;
   }
-  console.log(data);
+
   if (token) {
     headers["x-api-token"] = token;
   }

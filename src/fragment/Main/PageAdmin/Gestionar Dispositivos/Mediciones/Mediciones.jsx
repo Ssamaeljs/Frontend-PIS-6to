@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { GET } from "../../../../../hooks/Conexion";
 import { getToken } from "../../../../../utilidades/Sessionutil";
+<<<<<<< HEAD
+=======
+import { formatearFechaYHora } from "../../../../Componentes/MedicionUV/assets/MedicionUtils";
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
 import { useLocation } from "react-router";
 
 const Mediciones = () => {
@@ -55,6 +59,7 @@ const Mediciones = () => {
     }
   }, [llMediciones, setLoading]);
 
+<<<<<<< HEAD
   const [filtroFecha, setFiltroFecha] = useState("Seleccionar");
   const [filtroHora, setFiltroHora] = useState("Seleccionar");
   const [filtroRadiacion, setFiltroRadiacion] = useState("Seleccionar");
@@ -167,6 +172,12 @@ const Mediciones = () => {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+=======
+  const medicionesFiltradas = mediciones.filter((medicion) => {
+    return medicion;
+  });
+
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
   return (
     <>
       <div className="row justify-content-center">
@@ -245,6 +256,7 @@ const Mediciones = () => {
                   paddingBottom: "20px",
                 }}
               >
+<<<<<<< HEAD
                 <select
                   defaultValue="Seleccionar"
                   className="form-select form-select-lg text-center"
@@ -287,6 +299,22 @@ const Mediciones = () => {
                     HOY
                   </option>
                 </select>
+=======
+                <input
+                  style={{
+                    borderRadius: "5px",
+                    background: "rgba(255, 255, 255, 0)",
+                    width: "100%",
+                    height: "100%",
+                    color: "white",
+                    border: "1px solid white",
+                  }}
+                  type="search"
+                  className="me-2"
+                  placeholder={"Buscar Medicion"}
+                  // onChange={BuscarDispositivo}
+                ></input>
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
               </div>
               <div
                 className="col-3"
@@ -303,7 +331,11 @@ const Mediciones = () => {
                     color: "white",
                     border: "1px solid white",
                   }}
+<<<<<<< HEAD
                   onChange={(e) => setFiltroHora(e.target.value)}
+=======
+                  //  onChange={BuscarDispositivo_Estado}
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                 >
                   <option
                     value="Seleccionar"
@@ -313,6 +345,7 @@ const Mediciones = () => {
                   </option>
                   <option
                     style={{ background: "rgba(0, 0, 0, 0.7)" }}
+<<<<<<< HEAD
                     value="ULTIMA_HORA"
                   >
                     ÚLTIMA HORA
@@ -322,6 +355,17 @@ const Mediciones = () => {
                     value="ULTIMOS_10_MINUTOS"
                   >
                     ÚLTIMOS 10 MINUTOS
+=======
+                    value="ACTIVO"
+                  >
+                    ACTIVO
+                  </option>
+                  <option
+                    style={{ background: "rgba(0, 0, 0, 0.7)" }}
+                    value="INACTIVO"
+                  >
+                    INACTIVO
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                   </option>
                 </select>
               </div>
@@ -330,6 +374,7 @@ const Mediciones = () => {
                 style={{
                   paddingBottom: "20px",
                 }}
+<<<<<<< HEAD
               >
                 <select
                   defaultValue="Seleccionar"
@@ -362,6 +407,9 @@ const Mediciones = () => {
                   </option>
                 </select>
               </div>
+=======
+              ></div>
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
               <div
                 className="col-3 "
                 style={{
@@ -377,7 +425,11 @@ const Mediciones = () => {
                     color: "white",
                     border: "1px solid white",
                   }}
+<<<<<<< HEAD
                   disabled
+=======
+                  //onClick
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -419,7 +471,11 @@ const Mediciones = () => {
                   </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                   {currentRecords.map((medicion) => (
+=======
+                  {medicionesFiltradas.map((medicion) => (
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                     <tr
                       key={medicion.external_id}
                       style={{
@@ -435,9 +491,13 @@ const Mediciones = () => {
                         }
                       </td>
                       <td style={{ padding: "5px" }}>
+<<<<<<< HEAD
                         {new Date(medicion.fecha).toLocaleTimeString("es-EC", {
                           hour12: false,
                         })}
+=======
+                        {new Date(medicion.createdAt).toLocaleTimeString()}
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                       </td>
                       <td style={{ padding: "5px" }}>{medicion.uv}</td>
                       <td style={{ padding: "5px" }}>
@@ -450,6 +510,7 @@ const Mediciones = () => {
                   ))}
                 </tbody>
               </table>
+<<<<<<< HEAD
               <div className="pagination">
                 <button
                   onClick={() => paginate(currentPage - 1)}
@@ -483,6 +544,8 @@ const Mediciones = () => {
                   Siguiente
                 </button>
               </div>
+=======
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
             </div>
           )
         )}

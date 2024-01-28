@@ -65,7 +65,11 @@ const EditarDispositivo = (props) => {
       <MDBRow className="g-0">
         <MDBCol md="6">
           <MDBCardImage
+<<<<<<< HEAD
             src="https://preview.redd.it/10x4x7psctv61.jpg?width=2048&format=pjpg&auto=webp&s=ce757dd8d2ac5c02f8b44204f312e066ca4f5d20"
+=======
+            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
             style={{ width: "100%", height: "100%" }}
             alt="login form"
           />
@@ -164,6 +168,7 @@ const EditarDispositivo = (props) => {
                       height="16"
                       fill="currentColor"
                       className="bi bi-person-plus"
+<<<<<<< HEAD
                       viewBox="0 0 231 231"
                     >
                       <path
@@ -173,6 +178,14 @@ const EditarDispositivo = (props) => {
                       <path
                         fill="white"
                         d="m179.535 180.465-12.495-.043a.921.921 0 0 0-.925.918l-.044 12.711a.921.921 0 0 0 .918.925l12.495.043a.921.921 0 0 0 .925-.918l.045-12.711a.923.923 0 0 0-.919-.925Z"
+=======
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                      <path
+                        fill-rule="evenodd"
+                        d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                       />
                     </svg>
                   </Button>{" "}

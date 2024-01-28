@@ -3,7 +3,10 @@ import { useLocation } from "react-router";
 import { useState } from "react";
 import Header from "../Public/Header";
 import ContenedorInicio from "../../Componentes/ContenedorInicio";
+<<<<<<< HEAD
 import ConfiguracionUsuario from "./Configuracion/ConfiguracionUsuario";
+=======
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
 
 const PaginaInicioUser = () => {
   const location_props = useLocation();
@@ -14,8 +17,11 @@ const PaginaInicioUser = () => {
     switch (location_props.pathname) {
       case "/inicio":
         return <ContenedorInicio />;
+<<<<<<< HEAD
       case "/inicio/configuracion":
         return <ConfiguracionUsuario user={user} />;
+=======
+>>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
       default:
         break;
     }
