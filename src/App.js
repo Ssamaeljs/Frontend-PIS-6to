@@ -75,6 +75,14 @@ function App() {
         }
       />
       <Route
+        path="/admin/configuracion/editar_perfil"
+        element={
+          <MiddlewareSesion>
+            <PageInicioAdmin />
+          </MiddlewareSesion>
+        }
+      />
+      <Route
         path="/inicio"
         element={
           <MiddlewareSesion>
@@ -90,7 +98,6 @@ function App() {
           </MiddlewareSesion>
         }
       />
-
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
