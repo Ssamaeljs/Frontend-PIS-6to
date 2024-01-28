@@ -11,20 +11,12 @@ import {
 } from "mdb-react-ui-kit";
 import mensajes from "../../../../../utilidades/Mensajes";
 import { getToken } from "../../../../../utilidades/Sessionutil";
-
-<<<<<<< HEAD
 import img from "./img/img.jpg";
-=======
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
+
 const RegistrarUsuario = (props) => {
   const { setShow } = props;
 
   const [paginaActual, setPagina] = useState(1);
-<<<<<<< HEAD
-=======
-
-  const [institucion, setInstitucion] = useState("");
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
   const [show_Institucion, setShow_Institucion] = useState(true);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -33,10 +25,7 @@ const RegistrarUsuario = (props) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-<<<<<<< HEAD
     setValue,
-=======
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
   } = useForm();
 
   const onSubmit = (data) => {
@@ -85,11 +74,7 @@ const RegistrarUsuario = (props) => {
       <MDBRow className="g-0">
         <MDBCol md="6">
           <MDBCardImage
-<<<<<<< HEAD
             src={img}
-=======
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
             style={{ width: "100%", height: "100%" }}
             alt="login form"
           />
@@ -209,10 +194,6 @@ const RegistrarUsuario = (props) => {
                         {...register("institucion", {
                           required: !show_Institucion,
                         })}
-<<<<<<< HEAD
-=======
-                        defaultValue={institucion}
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                         isInvalid={!!errors.institucion}
                       />
                       <Form.Control.Feedback type="invalid">
@@ -250,7 +231,6 @@ const RegistrarUsuario = (props) => {
                         onChange={(e) => {
                           const correo = e.target.value;
                           const dominio = correo.split("@")[1];
-<<<<<<< HEAD
                           switch (dominio) {
                             case "unl.edu.ec":
                               setValue(
@@ -262,36 +242,18 @@ const RegistrarUsuario = (props) => {
                             case "utpl.edu.ec":
                               setValue(
                                 "institucion",
-=======
-                          console.log(dominio);
-                          switch (dominio) {
-                            case "unl.edu.ec":
-                              setInstitucion("Universidad Nacional de Loja");
-                              setShow_Institucion(true);
-                              break;
-                            case "utpl.edu.ec":
-                              setInstitucion(
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                                 "Universidad Técnica Particular de Loja"
                               );
                               setShow_Institucion(true);
                               break;
                             case "uide.edu.ec":
-<<<<<<< HEAD
                               setValue(
                                 "institucion",
-=======
-                              setInstitucion(
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                                 "Universidad Internacional del Ecuador"
                               );
                               setShow_Institucion(true);
                               break;
                             default:
-<<<<<<< HEAD
-=======
-                              setInstitucion("");
->>>>>>> 2a375fe5c13082d0fb2ef989aff1fd94a5caa0e2
                               setShow_Institucion(false);
                           }
                         }}
