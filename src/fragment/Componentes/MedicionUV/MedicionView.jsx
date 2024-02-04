@@ -2,7 +2,6 @@ import React from "react";
 import MedicionUV from "./MedicionUV";
 import MedicionInfo from "./MedicionInfo";
 import CategoriasExposicion from "../Tablas/CategoriasExposicion";
-import BarraVoz from "../BarraVoz/BarraVoz";
 
 const MedicionView = (props) => {
   const { dispositivos, selectedUVData } = props;
@@ -25,7 +24,7 @@ const MedicionView = (props) => {
       </div>
       <div className="card-body">
         <div className="row ">
-          <div className="col-4">
+          <div className="col-5">
             <MedicionUV
               dispositivos={dispositivos}
               selectedUVData={selectedUVData}
@@ -34,17 +33,6 @@ const MedicionView = (props) => {
           <div className="col-sm">
             <div className="row">
               <MedicionInfo
-                dispositivos={dispositivos}
-                selectedUVData={selectedUVData}
-              />
-            </div>
-            <div
-              className="row justify-content-center"
-              style={{
-                paddingTop: "80px",
-              }}
-            >
-              <BarraVoz
                 dispositivos={dispositivos}
                 selectedUVData={selectedUVData}
               />

@@ -15,7 +15,7 @@ const VenueMarkers = (props) => {
     });
     return {
       geometry: [dispositivo.latitud, dispositivo.longitud],
-      name: dispositivo.identificador,
+      name: dispositivo.nombre,
       uv: uv,
       fecha: fecha,
       estado: dispositivo.estado,

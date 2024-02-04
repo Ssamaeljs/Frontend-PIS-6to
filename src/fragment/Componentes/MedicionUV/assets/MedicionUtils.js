@@ -13,7 +13,9 @@ export const getPromedio = (dispositivos) => {
     };
   });
   uv_last.map((uv) => {
-    uv_promedio += uv.uv;
+    if (uv > 0) {
+      uv_promedio += uv.uv;
+    }
   });
   uv_promedio = (uv_promedio / uv_last.length).toFixed(1);
   return parseFloat(uv_promedio);

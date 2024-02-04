@@ -1,9 +1,12 @@
-const URLN = "http://localhost:3006/api";
+var URLN = "http://localhost:3006/api";
 
-export const GET = async (urls, token = null) => {
+export const GET = async (urls, token = null, setURLN = null) => {
   const headers = {};
   if (token) {
     headers["x-api-token"] = token;
+  }
+  if (setURLN) {
+    URLN = setURLN;
   }
   const datos = await (
     await fetch(`${URLN}/${urls}`, {

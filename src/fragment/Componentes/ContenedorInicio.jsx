@@ -17,14 +17,15 @@ const ContenedorInicio = (props) => {
 
   useEffect(() => {
     if (!llDispositivos) {
-      GET("listar/dispositivo", getToken())
+      GET("listar/api_dispositivo", getToken())
         .then((info) => {
+          console.log(info);
           if (info.code !== 200) {
             setError("Error de Conexión:  " + info.msg);
           } else {
             if (!isAdmin) {
-              const dispositivosActivos = info.info.filter(
-                (dispositivo) => dispositivo.estado
+              var dispositivosActivos = info.info.filter(
+                (dispositivo) => !dispositivo.activo
               );
               setDispositivos(dispositivosActivos);
             } else {
@@ -32,7 +33,8 @@ const ContenedorInicio = (props) => {
             }
           }
         })
-        .catch(() => {
+        .catch((e) => {
+          console.error(e);
           setError("Error de Conexión");
         })
         .finally(() => {
