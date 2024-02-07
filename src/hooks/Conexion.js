@@ -17,7 +17,13 @@ export const GET = async (urls, token = null, setURLN = null) => {
   return datos;
 };
 
-export const POST = async (data, urls, token = null, type = "json") => {
+export const POST = async (
+  data,
+  urls,
+  token = null,
+  type = "json",
+  setURLN = null
+) => {
   const headers = {};
   switch (type) {
     case "json":
@@ -39,7 +45,9 @@ export const POST = async (data, urls, token = null, type = "json") => {
   if (token) {
     headers["x-api-token"] = token;
   }
-
+  if (setURLN) {
+    URLN = setURLN;
+  }
   const datos = await (
     await fetch(`${URLN}/${urls}`, {
       method: "POST",

@@ -18,7 +18,7 @@ const VenueMarkers = (props) => {
       name: dispositivo.nombre,
       uv: uv,
       fecha: fecha,
-      estado: dispositivo.estado,
+      estado: dispositivo.activo,
     };
   });
 

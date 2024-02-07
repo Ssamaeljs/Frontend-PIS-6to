@@ -1,6 +1,9 @@
 import React from "react";
+import { POST } from "../../../../../hooks/Conexion";
+import mensajes from "../../../../../utilidades/Mensajes";
+import { getToken } from "../../../../../utilidades/Sessionutil";
 
-const ApiOption = (props) => {
+const ApiOption = () => {
   return (
     <>
       <div
@@ -15,7 +18,19 @@ const ApiOption = (props) => {
           borderRadius: "20px",
         }}
         onClick={() => {
-          window.open("http://localhost:8000/", "_blank");
+          const datos = {
+            isAdmin: true,
+          };
+          POST(datos, `redirigir/api/${datos.isAdmin}`, getToken()).then(
+            (info) => {
+              if (info.code != 200) {
+                mensajes(info.msg, "error", "Error de Acceso");
+              } else {
+                mensajes(info.msg, "success", "Exito");
+                window.open("http://localhost:8000/", "_blank");
+              }
+            }
+          );
         }}
       >
         <svg
@@ -30,7 +45,7 @@ const ApiOption = (props) => {
         </svg>
 
         <label style={{ fontSize: "10px", scale: "1.7" }}>
-          "Acceso a la API"
+          Acceso a la API
         </label>
       </div>
     </>

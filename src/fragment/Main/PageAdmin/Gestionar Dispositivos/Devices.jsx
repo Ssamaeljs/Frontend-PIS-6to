@@ -126,7 +126,7 @@ const Devices = () => {
                 "https://upload.wikimedia.org/wikipedia/commons/d/df/UNL3.png"
               }
               alt="404"
-              style={{ width: "20%" }}
+              style={{ width: "19%" }}
             />
             <h1
               style={{
@@ -216,7 +216,7 @@ const Devices = () => {
                   paddingBottom: "20px",
                 }}
               >
-                {able && (
+                {!able && (
                   <button
                     className="btn btn-outline-info"
                     style={{
@@ -310,7 +310,7 @@ const Devices = () => {
                       style={{
                         borderBottom: "1px solid white",
                         borderRight: "1px solid white",
-                        background: device.estado ? "#71b37147" : "#b3717147",
+                        background: device.activo ? "#71b37147" : "#b3717147",
                       }}
                     >
                       <td style={{ padding: "5px" }}>
@@ -319,7 +319,7 @@ const Devices = () => {
                       <td style={{ padding: "5px" }}>{device.latitud}</td>
                       <td style={{ padding: "5px" }}> {device.longitud}</td>
                       <td style={{ padding: "5px" }}>
-                        {device.estado ? "Activo" : "Inactivo"}
+                        {device.activo ? "Activo" : "Inactivo"}
                       </td>
                       <td>
                         {device.medicion.length > 0
