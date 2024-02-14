@@ -1,12 +1,13 @@
-var URLN = "http://localhost:3006/api";
+const URL = "http://localhost:3006/api";
 
-export const GET = async (urls, token = null, setURLN = null) => {
+export const GET = async (urls, token = null, setURLN = false) => {
+  var URLN = URL;
   const headers = {};
   if (token) {
     headers["x-api-token"] = token;
   }
   if (setURLN) {
-    URLN = setURLN;
+    URLN = "https://computacion.unl.edu.ec/uv/api/";
   }
   const datos = await (
     await fetch(`${URLN}/${urls}`, {
@@ -22,8 +23,9 @@ export const POST = async (
   urls,
   token = null,
   type = "json",
-  setURLN = null
+  setURLN = false
 ) => {
+  var URLN = URL;
   const headers = {};
   switch (type) {
     case "json":
@@ -46,7 +48,7 @@ export const POST = async (
     headers["x-api-token"] = token;
   }
   if (setURLN) {
-    URLN = setURLN;
+    URLN = "https://computacion.unl.edu.ec/uv/api/";
   }
   const datos = await (
     await fetch(`${URLN}/${urls}`, {
@@ -65,7 +67,7 @@ export const DELETE = async (urls, token = null) => {
     headers["x-api-token"] = token;
   }
   const datos = await (
-    await fetch(URLN + "/" + urls, {
+    await fetch(URL + "/" + urls, {
       method: "DELETE",
       headers: headers,
     })

@@ -38,7 +38,7 @@ const PaginaInicio = () => {
             zIndex: "2", // Asegura que esté por encima del contenedor principal
           }}
         >
-          <Bot usuario={null} />
+          {!true && <Bot usuario={null} />}
         </div>
       </section>
     </div>

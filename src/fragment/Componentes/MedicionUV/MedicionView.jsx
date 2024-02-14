@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import MedicionUV from "./MedicionUV";
 import MedicionInfo from "./MedicionInfo";
 import CategoriasExposicion from "../Tablas/CategoriasExposicion";
 
 const MedicionView = (props) => {
-  const { dispositivos, selectedUVData } = props;
+  const { selectedUVData, promedio } = props;
   return (
     <div
       className="card"
@@ -25,16 +25,13 @@ const MedicionView = (props) => {
       <div className="card-body">
         <div className="row ">
           <div className="col-5">
-            <MedicionUV
-              dispositivos={dispositivos}
-              selectedUVData={selectedUVData}
-            />
+            <MedicionUV selectedUVData={selectedUVData} promedio={promedio} />
           </div>
           <div className="col-sm">
             <div className="row">
               <MedicionInfo
-                dispositivos={dispositivos}
                 selectedUVData={selectedUVData}
+                promedio={promedio}
               />
             </div>
           </div>

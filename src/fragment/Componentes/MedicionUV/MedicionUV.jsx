@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  formatearFechaYHora,
-  getPromedio,
-  getUVColor,
-} from "./assets/MedicionUtils";
+import { formatearFechaYHora, getCategoriaPorUV } from "./assets/MedicionUtils";
 
 const MedicionUV = (props) => {
-  const { dispositivos, selectedUVData } = props;
+  const { selectedUVData, promedio } = props;
   return (
     <div
       className="container text-center"
@@ -33,14 +29,14 @@ const MedicionUV = (props) => {
         </a>
         <a
           style={{
-            color: getUVColor(
-              selectedUVData ? selectedUVData.uv : getPromedio(dispositivos)
+            color: getCategoriaPorUV(
+              selectedUVData ? selectedUVData.uv : promedio
             ).color,
             fontSize: "95px",
             fontFamily: "Agency FB",
           }}
         >
-          {selectedUVData ? selectedUVData.uv : getPromedio(dispositivos)}
+          {selectedUVData ? selectedUVData.uv : promedio}
         </a>
       </div>
       <div>
@@ -55,7 +51,7 @@ const MedicionUV = (props) => {
         >
           {selectedUVData
             ? formatearFechaYHora(selectedUVData.fecha)
-            : formatearFechaYHora(Date.now())}
+            : formatearFechaYHora()}
         </label>
       </div>
     </div>

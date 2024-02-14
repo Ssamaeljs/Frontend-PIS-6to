@@ -12,24 +12,30 @@ const ContenedorInicio = (props) => {
   const { isAdmin } = props;
   const [llDispositivos, setLlDispositivos] = useState(false);
   const [dispositivos, setDispositivos] = useState([]);
+  const [promedio, setPromedio] = useState(0);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedUVData, setSelectedUVData] = useState(null);
 
   useEffect(() => {
     if (!llDispositivos) {
       GET("listar/api_dispositivo", getToken())
         .then((info) => {
-          console.log(info);
+          var dispositivos, promedio;
+          dispositivos = info.info.dispositivos;
+          promedio = info.info.promedio;
           if (info.code !== 200) {
             setError("Error de Conexión:  " + info.msg);
           } else {
+            setPromedio(promedio);
             if (!isAdmin) {
-              var dispositivosActivos = info.info.filter(
-                (dispositivo) => !dispositivo.activo
+              var dispositivosActivos = dispositivos.filter(
+                (dispositivo) => dispositivo.activo
               );
               setDispositivos(dispositivosActivos);
             } else {
-              setDispositivos(info.info);
+              setDispositivos(dispositivos);
             }
           }
         })
@@ -43,8 +49,6 @@ const ContenedorInicio = (props) => {
         });
     }
   }, [llDispositivos, setLoading]);
-
-  const [selectedUVData, setSelectedUVData] = useState(null);
   return (
     <>
       {loading ? (
@@ -101,6 +105,7 @@ const ContenedorInicio = (props) => {
               <MedicionView
                 dispositivos={dispositivos}
                 selectedUVData={selectedUVData}
+                promedio={promedio}
               />
             </div>
           </div>
