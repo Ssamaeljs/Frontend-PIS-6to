@@ -7,6 +7,8 @@ import MedicionView from "./MedicionUV/MedicionView";
 import { Button } from 'reactstrap';
 import { GET } from "../../hooks/Conexion";
 import { getToken } from "../../utilidades/Sessionutil";
+import GraficoHistorico from "./Graficos/GraficoHistorico";
+
 
 const ContenedorInicio = (props) => {
   const { isAdmin } = props;
@@ -114,7 +116,15 @@ const ContenedorInicio = (props) => {
               />
               
             </div>
-            
+
+            <div
+              className="row justify-content-center"
+              style={{ padding: "38px" }}
+            >
+              <div className="col">
+                <GraficoHistorico />
+              </div>
+            </div>
           </div>
         )
       )}
