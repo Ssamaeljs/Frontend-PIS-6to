@@ -26,7 +26,6 @@ const MedicionView = (props) => {
       <div className="card-body">
         <div className="row ">
           <div className="col-5">
-            
             <MedicionUV selectedUVData={selectedUVData} promedio={promedio} />
           </div>
           <div className="col-sm">
@@ -39,18 +38,14 @@ const MedicionView = (props) => {
           </div>
         </div>
 
-        
-        <div className="row justify-content-center" style={{ padding: "38px" }}>
-          <div className="col">
-          <GraficoHistorico />
-          </div>
-        </div>
         <div className="row justify-content-center" style={{ padding: "38px" }}>
           <div className="col">
             <CategoriasExposicion />
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 };

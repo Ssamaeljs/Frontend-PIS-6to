@@ -7,6 +7,8 @@ import MedicionView from "./MedicionUV/MedicionView";
 
 import { GET } from "../../hooks/Conexion";
 import { getToken } from "../../utilidades/Sessionutil";
+import GraficoHistorico from "./Graficos/GraficoHistorico";
+
 
 const ContenedorInicio = (props) => {
   const { isAdmin } = props;
@@ -107,6 +109,14 @@ const ContenedorInicio = (props) => {
                 selectedUVData={selectedUVData}
                 promedio={promedio}
               />
+            </div>
+            <div
+              className="row justify-content-center"
+              style={{ padding: "38px" }}
+            >
+              <div className="col">
+                <GraficoHistorico />
+              </div>
             </div>
           </div>
         )
