@@ -31,10 +31,10 @@ const Reportes = (props) => {
             if (!isAdmin) {
               var dispositivosActivos = dispositivos.filter((dispositivo) => dispositivo.activo);
               setDispositivos(dispositivosActivos);
-              console.log("#############",dispositivosActivos);
+              
             } else {
               setDispositivos(dispositivos);
-              console.log("######################",dispositivos);
+              
             }
           }
         })

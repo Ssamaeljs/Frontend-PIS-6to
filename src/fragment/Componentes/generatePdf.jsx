@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
-import logoUnlPNG from '../../utilidades/imagenes/logo_unl.png';
-import locoComputacion from '../../utilidades/imagenes/logo-computacion.png';
+import logoUnlPNG from '../../utilidades/imagenes/logounl.png';
+import locoComputacion from '../../utilidades/imagenes/logoComputacion.png';
 import 'jspdf-autotable';
 
 const generatePdf = (dispositivos, promedio) => {
@@ -8,7 +8,7 @@ const generatePdf = (dispositivos, promedio) => {
   let y = 20;
 
  
-  doc.addImage(logoUnlPNG, 'PNG', 2.5, 2.5, 50, 20); // (imagen, tipo, x, y, ancho, alto)
+  doc.addImage(logoUnlPNG, 'PNG', 2.5, 2.5, 50, 20); // ( imagen, tipo, x, y, ancho, alto)
   doc.addImage(locoComputacion, 'PNG', 175, 2.5, 30, 20); 
   const titulo = 'Reporte de Ultima medición de Dispositivos Sensores de Radiación UV';
 

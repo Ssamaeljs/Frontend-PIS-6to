@@ -32,7 +32,7 @@ const PaginaReportes = () => {
             position: "fixed",
             bottom: "50px",
             right: "40px",
-            width: "450px", // Ajusta el ancho según tus necesidades
+            width: "450px", // Ajusta el ancho según tus necesidadesss
             height: "600px", // Ajusta la altura según tus necesidades
             borderRadius: "10px", // Ajusta el radio de borde según tus necesidades
             zIndex: "2", // Asegura que esté por encima del contenedor principal
