@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
-
+import generatePdf  from './generatePdf' 
 import MapView from "./Mapa/MapaView";
 import MedicionView from "./MedicionUV/MedicionView";
-
+import { Button } from 'reactstrap';
 import { GET } from "../../hooks/Conexion";
 import { getToken } from "../../utilidades/Sessionutil";
 
@@ -25,6 +25,7 @@ const ContenedorInicio = (props) => {
           var dispositivos, promedio;
           dispositivos = info.info.dispositivos;
           promedio = info.info.promedio;
+          console.log(dispositivos);
           if (info.code !== 200) {
             setError("Error de Conexión:  " + info.msg);
           } else {
@@ -49,6 +50,9 @@ const ContenedorInicio = (props) => {
         });
     }
   }, [llDispositivos, setLoading]);
+  const handleGeneratePdf = () => {
+    generatePdf(dispositivos ,promedio); // Llamamos a la función para generar el PDF con los dispositivos y el promedio
+  };
   return (
     <>
       {loading ? (
@@ -100,6 +104,7 @@ const ContenedorInicio = (props) => {
                 dispositivos={dispositivos}
                 setSelectedUVData={setSelectedUVData}
               />
+              <Button size="lg" alt="Generar Reporte" onClick={handleGeneratePdf}>Generar Reporte</Button>
             </div>
             <div className="col-6">
               <MedicionView
@@ -107,7 +112,9 @@ const ContenedorInicio = (props) => {
                 selectedUVData={selectedUVData}
                 promedio={promedio}
               />
+              
             </div>
+            
           </div>
         )
       )}
