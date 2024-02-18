@@ -1,5 +1,18 @@
 import colorValues from "../../../../utilidades/data/colorValues.json";
 
+// Definir el buffer con una longitud máxima de 50
+const bufferLength = 50;
+let uvBuffer = [];
+
+export const agregarValorAlBuffer = (nuevoValor) => {
+  uvBuffer.push(nuevoValor);
+  
+  // Mantener el buffer con una longitud máxima de 50
+  if (uvBuffer.length > bufferLength) {
+    uvBuffer.shift(); // Eliminar el valor más antiguo
+  }
+};
+
 export const getCategoriaPorUV = (uvValue) => {
   uvValue = parseInt(uvValue);
   if (uvValue > 11) {
