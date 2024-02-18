@@ -6,6 +6,7 @@ import PaginaInicio from "./fragment/Main/Public/PageInicio";
 import { MiddlewareSesion, MiddlewareNoSesion } from "./utilidades/Middleware";
 import PageInicioAdmin from "./fragment/Main/PageAdmin/PageInicioAdmin";
 import PaginaInicioUser from "./fragment/Main/PageUser/PageInicioUser";
+import PaginaReportes from "./fragment/Main/Public/PageReportes";
 
 function App() {
   return (
@@ -96,6 +97,14 @@ function App() {
           <MiddlewareSesion>
             <PaginaInicioUser />
           </MiddlewareSesion>
+        }
+      />
+      <Route
+        path="/reportes"
+        element={
+          
+            <PaginaReportes />
+          
         }
       />
       <Route path="*" element={<PageNotFound />} />
