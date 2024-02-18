@@ -85,7 +85,21 @@ const options = {
 };
 
 const GraficoHistorico = () => {
-  return <Line data={data} options={options} />;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%", // Cambia el ancho del contenedor a 100%
+        height: "300px",
+      }}
+    >
+      <Line data={data} options={options} />
+    </div>
+  );
 };
+
+
 
 export default GraficoHistorico;
