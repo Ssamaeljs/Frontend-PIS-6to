@@ -1,14 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
-import generatePdf  from './generatePdf' 
+import generatePdf from "./generatePdf";
 import MapView from "./Mapa/MapaView";
 import MedicionView from "./MedicionUV/MedicionView";
-import { Button } from 'reactstrap';
+import { Button } from "reactstrap";
 import { GET } from "../../hooks/Conexion";
 import { getToken } from "../../utilidades/Sessionutil";
 import GraficoHistorico from "./Graficos/GraficoHistorico";
-
 
 const ContenedorInicio = (props) => {
   const { isAdmin } = props;
@@ -53,7 +52,7 @@ const ContenedorInicio = (props) => {
     }
   }, [llDispositivos, setLoading]);
   const handleGeneratePdf = () => {
-    generatePdf(dispositivos ,promedio); // Llamamos a la función para generar el PDF con los dispositivos y el promedio
+    generatePdf(dispositivos, promedio); // Llamamos a la función para generar el PDF con los dispositivos y el promedio
   };
   return (
     <>
@@ -106,7 +105,6 @@ const ContenedorInicio = (props) => {
                 dispositivos={dispositivos}
                 setSelectedUVData={setSelectedUVData}
               />
-              <Button size="lg" alt="Generar Reporte" onClick={handleGeneratePdf}>Generar Reporte</Button>
             </div>
             <div className="col-6">
               <MedicionView
@@ -114,16 +112,25 @@ const ContenedorInicio = (props) => {
                 selectedUVData={selectedUVData}
                 promedio={promedio}
               />
-              
+              <Button
+                size="lg"
+                alt="Generar Reporte"
+                onClick={handleGeneratePdf}
+              >
+                Generar Reporte
+              </Button>
             </div>
-
+            <div><p></p><p></p></div>
             <div
               className="row justify-content-center"
               style={{ padding: "38px" }}
             >
-              <div className="col">
-                <GraficoHistorico />
-              </div>
+              <GraficoHistorico
+                radiacionUVDispositivoActual={dispositivos.map(
+                  (dispositivo) => dispositivo.medicion[0].uv
+                )}
+                radiacionUVPromedio={promedio}
+              />
             </div>
           </div>
         )
