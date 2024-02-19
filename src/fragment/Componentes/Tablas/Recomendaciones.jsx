@@ -6,7 +6,7 @@ const Recomendaciones = () => {
   const description = [
     "Puede permanecer en el exterior sin riesgos.",
     "Pongase camisa, crema de proteccion solar, sombrero y gafas de sol",
-    "Manténgase a la sombra durante las horas centrales del día. Póngase camisa, crema de protección solar, sombrero y gafas de sol.",
+    "Manténgase a la sombra durante las horas centrales del día.",
     "Es imprescindible usar camisa, crema de protección solar, sombrero y gafas de sol",
     "Es imprescindible usar camisa, crema de protección solar, sombrero y gafas de sol",
   ];
