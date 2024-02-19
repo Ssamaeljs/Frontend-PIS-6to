@@ -112,23 +112,16 @@ const ContenedorInicio = (props) => {
                 selectedUVData={selectedUVData}
                 promedio={promedio}
               />
-              <Button
-                size="lg"
-                alt="Generar Reporte"
-                onClick={handleGeneratePdf}
-              >
-                Generar Reporte
-              </Button>
             </div>
-            <div><p></p><p></p></div>
             <div
               className="row justify-content-center"
-              style={{ padding: "38px" }}
+              style={{ padding: "28px" }}
             >
               <GraficoHistorico
                 radiacionUVDispositivoActual={dispositivos.map(
                   (dispositivo) => dispositivo.medicion[0].uv
                 )}
+                dispositivos={dispositivos}
                 radiacionUVPromedio={promedio}
               />
             </div>

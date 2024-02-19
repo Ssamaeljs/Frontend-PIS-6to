@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import MedicionUV from "./MedicionUV";
 import MedicionInfo from "./MedicionInfo";
 import CategoriasExposicion from "../Tablas/CategoriasExposicion";
-import GraficoHistorico from "../Graficos/GraficoHistorico";
-
+import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
+import Recomendaciones from "../Tablas/Recomendaciones";
 const MedicionView = (props) => {
   const { selectedUVData, promedio } = props;
   return (
@@ -38,14 +38,24 @@ const MedicionView = (props) => {
           </div>
         </div>
 
-        <div className="row justify-content-center" style={{ padding: "38px" }}>
-          <div className="col">
-            <CategoriasExposicion />
+        <div className="row justify-content-center">
+          <div
+            className="col"
+            style={{
+              padding: 22,
+            }}
+          >
+            <MDBCarousel showControls showIndicators>
+              <MDBCarouselItem itemId={1}>
+                <CategoriasExposicion />
+              </MDBCarouselItem>
+              <MDBCarouselItem itemId={2}>
+                <Recomendaciones />
+              </MDBCarouselItem>
+            </MDBCarousel>
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };
